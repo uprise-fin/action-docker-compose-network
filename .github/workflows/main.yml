@@ -16,6 +16,7 @@ jobs:
         with:
           network-name: default
           compose-file: tests/docker-compose.yml
+          target-network: ${{ job.container.network }}
       - name: Assert
         if: ${{ steps.change_network.outputs['network-name'] != job.container.network }}
         env:
