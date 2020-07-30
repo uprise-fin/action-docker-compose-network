@@ -8,9 +8,12 @@ inputs:
   network-name:
     description: 'The network name in docker-compose file to be changed'
     required: true
+  target-network:
+    description: 'The network name to change'
+    required: true
 outputs:
   network-name:
-    description: 'The name of job container network'
+    description: 'The network name changed'
 
 runs:
   using: 'node12'
