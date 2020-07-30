@@ -18,5 +18,11 @@ jobs:
           compose-file: tests/docker-compose.yml
       - name: Assert
         if: ${{ steps.change_network.outputs['network-name'] != job.container.network }}
-        run: exit 1
+        env:
+          EXPECTED: ${{ job.container.network }}
+          OBSERVED: ${{ steps.change_network.outputs['network-name'] }}
+        run: |
+          echo "expected network : $EXPECTED"
+          echo "observed network: $OBSERVED"
+          exit 1
 
