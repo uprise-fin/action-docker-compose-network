@@ -6,26 +6,17 @@ try {
   const composeFilePath = core.getInput('compose-file')
   const networkName = core.getInput('network-name')
 
-  let compose
-  let composeFile
+  const compose = yaml.parse(fs.readFileSync(composeFilePath, {
+    encoding: "utf8"
+  }))
+  const network = core.getState('job.container.network')
 
-  try {
-    composeFile = fs.openSync(composeFilePath, 'r')
-    compose = yaml.parse(fs.readSync(composeFilePath))
-    const network = core.getState('job.container.network')
-    compose['networks'][networkName] = {'external': true, 'name': network}
-  } finally {
-    fs.closeSync(composeFile)
-  }
+  compose['networks'][networkName] = {'external': true, 'name': network}
+  fs.writeFileSync(composeFilePath, yaml.stringify(compose))
 
-  try {
-    composeFile = fs.openSync(composeFilePath, 'w')
-    fs.writeSync(composeFile, yaml.stringify(compose))
-  } finally {
-    fs.closeSync(composeFile)
-  }
+  core.setOutput("network-name", network)
 
 } catch(error) {
-  score.setFiled(error.message)
+  core.setFailed(error.message)
 }
 
