@@ -2,7 +2,7 @@ on: [push]
 
 jobs:
   test:
-    runs-on: self-hosted
+    runs-on: ubuntu-latest
 
     container:
       image: heybit/node:12.18
