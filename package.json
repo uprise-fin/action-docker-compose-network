@@ -1,0 +1,14 @@
+{
+  "name": "docker-compose-network",
+  "version": "1.0.0",
+  "description": "A github action that change docker-compose network to the job container network",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Jake Song <jake@heybit.io>",
+  "dependencies": {
+    "@actions/core": "^1.2.4",
+    "@actions/github": "^4.0.0",
+    "yaml": "^1.10.0"
+  }
+}

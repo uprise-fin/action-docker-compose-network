@@ -1,0 +1,20 @@
+name: 'Change docker-compose network'
+description: 'Change docker-compose network to the job container network'
+inputs:
+  compose-file:
+    description: 'The path of docker-compose.yml'
+    required: true
+    default: './docker-compose.yaml'
+  network-name:
+    description: 'The network name in docker-compose file to be changed'
+    required: true
+outputs:
+  network-name:
+    description: 'The name of job container network'
+
+runs:
+  using: 'node12'
+  main: 'index.js'
+
+
+
