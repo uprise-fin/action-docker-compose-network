@@ -27,7 +27,7 @@ The network changed
 
 ```yaml
       - name: Change docker-compose network
-        uses: uprise-fin/action-docker-compose-network
+        uses: uprise-fin/action-docker-compose-network@v0.1.0
         with:
           network-name: default
           compose-file: tests/docker-compose.yml
